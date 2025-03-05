@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Changelog {
+  id          String   @id @default(uuid())
+  version     String
+  date        DateTime
+  repository  String
+  owner       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  entries     ChangelogEntry[]
+}
+
+model ChangelogEntry {
+  id              String    @id @default(uuid())
+  category        String
+  description     String
+  technicalDetails String?
+  relatedCommits  String[]
+  importance      String
+  breakingChange  Boolean   @default(false)
+  affectedFiles   String[]
+  affectedApis    String[]
+  changelogId     String
+  changelog       Changelog @relation(fields: [changelogId], references: [id])
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([changelogId])
+}
