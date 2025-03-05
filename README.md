@@ -1,142 +1,97 @@
-# ChangelogGenius
+# ChangelogGenius ✨
 
-An AI-powered changelog generator that helps developers maintain clean and organized changelogs with minimal effort.
+A smart, AI-powered tool that turns messy commit histories into beautiful, user-friendly changelogs.
 
-## Overview
+## 🔍 The Problem We're Solving
 
-ChangelogGenius solves two major challenges in changelog creation:
-1. Automatically aggregates and analyzes commits over any time period
-2. Uses AI to generate human-readable changelog entries that are relevant to end-users
+As developers, we've all been there - release day approaches and someone asks "what's in this update?" Then comes the tedious process of combing through commits, trying to translate technical changes into something users will understand.
 
-## Screenshots
+ChangelogGenius automates this entire workflow, saving you time and creating better changelogs.
 
-### Landing Page
+## 🚀 How It Works
+
 ![Landing Page](/public/landing-page.png)
 
-### Developer Dashboard - Add Repository
-![Add Repository](/public/add-a-repository.png)
+1. **Connect your GitHub repo** - Just paste your repository URL
+2. **Let AI analyze your commits** - Our AI reads commit messages and code diffs
+3. **Edit and publish** - Review, tweak, and publish your changelog
 
-### Edit Changelog
-![Edit Changelog](/public/edit-chagelog.png)
+## ✅ Key Features
 
-### Add Changelog Entry
-![Add Changelog Entry](/public/add-changelog-entry.png)
+- **AI-powered summaries** that convert technical commits into user-friendly language
+- **Smart categorization** of changes (features, fixes, improvements)
+- **Breaking change detection** to highlight important updates
+- **Clean, minimal public changelog** that your users will love
 
-### Public Changelog View
-![Public Changelog View](/public/changelog-public-view.png)
+## 📸 Screenshots
 
-## Technical & Product Decisions
+| Connect Repository | Edit Changelog | Public View |
+|:---:|:---:|:---:|
+| ![Add Repository](/public/add-a-repository.png) | ![Edit Changelog](/public/edit-chagelog.png) | ![Public View](/public/changelog-public-view.png) |
 
-### Architecture
-- **Frontend**: React + TypeScript + Vite
-  - Used for rapid development and excellent developer experience
-  - TypeScript for type safety and better maintainability
-  - Vite for fast builds and hot module replacement
+## 🛠️ Tech Stack & Architecture
 
-- **UI Framework**: TailwindCSS + Shadcn UI
-  - Provides a clean, modern, and responsive design
-  - Component-based architecture for consistency
-  - Dark mode support out of the box
-  - Accessible components following WAI-ARIA standards
+When building ChangelogGenius, I wanted to create something both powerful and pleasant to work with. Here's what powers the app:
 
-- **Backend**: Express + Prisma + PostgreSQL
-  - Express for a lightweight and flexible API
-  - Prisma for type-safe database operations
-  - PostgreSQL for robust data storage and relationships
+### 🖥️ Frontend
+- **React 18 + TypeScript** - Type-safe components with excellent DX
+- **Vite** - Lightning-fast builds and hot module replacement
+- **TailwindCSS + Shadcn UI** - Beautiful, accessible components without the bloat
+- **React Router** - Clean client-side navigation
 
-- **AI Integration**: Google's Generative AI
-  - Used for converting technical commit messages into user-friendly changelog entries
-  - Categorizes changes (features, fixes, improvements)
-  - Identifies breaking changes
-  - Summarizes technical details in a user-friendly way
+### ⚙️ Backend
+- **Express.js** - Lightweight but powerful API server
+- **Prisma** - Type-safe database access with migrations
+- **PostgreSQL** - Reliable, open-source database
 
-### Product Design Choices
+### 🧠 AI & Integration
+- **Google's Gemini 1.5 Flash** - Analyzes commits and generates human-friendly descriptions
+- **GitHub REST API** - Direct integration for maximum flexibility
 
-1. **Three-Step Workflow**
-   - Connect GitHub Repository
-   - Generate Changelog with AI
-   - Edit and Publish
-   - Each step has clear status indicators and helpful guidance
+### 🤔 Why I Made These Choices
 
-2. **Developer Experience**
-   - One-click GitHub repository connection
-   - Automatic commit analysis
-   - AI-powered content generation
-   - Manual editing capabilities for fine-tuning
-   - Preview before publishing
+I wanted ChangelogGenius to be both powerful for developers and accessible to non-technical team members:
 
-3. **End-User Experience**
-   - Clean, minimal changelog display
-   - Categorized entries for easy scanning
-   - Highlighted breaking changes
-   - Version and date organization
+1. **Direct GitHub API calls** instead of libraries
+   - Precise control over rate limiting and error handling
+   - Better flexibility for custom requests
 
-## Setup & Running the App
+2. **Gemini over other AI models**
+   - Excellent code understanding at a fraction of the cost
+   - Free tier is perfect for this use case
 
-1. **Prerequisites**
-   ```bash
-   Node.js >= 18
-   PostgreSQL
-   ```
+3. **Focused workflow**
+   - Limited to 10 commits per changelog
+   - Keeps the UI snappy and changelogs focused
 
-2. **Environment Setup**
-   ```bash
-   # Clone the repository
-   git clone <repository-url>
-   cd changeloggenius
+4. **JSON-structured AI responses**
+   - Forces consistent, parseable output
+   - Easily displayed in the UI
 
-   # Install dependencies
-   npm install
+5. **Shadcn + Tailwind**
+   - Polished look without reinventing the wheel
+   - Small bundle size and excellent performance
 
-   # Set up environment variables
-   cp .env.example .env
-   # Fill in your database and API keys
-   ```
+The architecture prioritizes simplicity and developer experience, making it easy to extend with new features as needed.
 
-3. **Database Setup**
-   ```bash
-   # Run database migrations
-   npx prisma migrate dev
-   ```
+## 💻 Running Locally
 
-4. **Running the App**
-   ```bash
-   # Start the development server
-   npm run dev
+```bash
+# Prerequisites: Node.js >= 18 and PostgreSQL
 
-   # In a new terminal, start the backend
-   npm run server
-   ```
+# Clone and install
+git clone https://github.com/ghulammurtaza27/changeloggenius
+cd changeloggenius
+npm install
 
-   The app will be available at:
-   - Frontend: http://localhost:8080
-   - Backend: http://localhost:3000
+# Set up environment
+cp .env.example .env
+# Add your GitHub token Gemini API key and Database URL to .env
 
-## AI Tools Used
+# Start the app
+npm run dev
+npm run server  # In a separate terminal
+```
 
-1. **Google's Generative AI (Gemini Pro)**
-   - Primary AI model for changelog generation
-   - Processes commit messages and generates user-friendly descriptions
-   - Identifies breaking changes and categorizes updates
-
-2. **GitHub API Integration**
-   - Fetches repository data and commit history
-   - Analyzes commit patterns and changes
-
-## Development Status
-
-- [x] Developer-facing changelog generation tool
-- [x] Public-facing changelog website
-- [x] AI-powered commit analysis
-- [x] Database integration
-- [x] User interface and styling
-- [x] Screen recording (see screenshots)
-
-## Expected Completion Date
-
-The project is feature complete.
-
-## Questions?
-
-For any questions or clarifications, please reach out to [Your Contact Info].
+The app will be available at http://localhost:8080
 
